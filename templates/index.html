@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GORA-AI Chatbot</title>
+    <title>UTPC Chatbot</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+
+    <button id="toggle-widget" class="toggle-button"><i class='fas fa-comment'></i></button>
 
   <div class="widget">
     <div class="chat-container">
@@ -30,14 +32,14 @@
             </div>
 
             <div class="rg-side">
-                <div class="right-side">tyu</div>
+                <div class="right-side"><h2>Good <br> to <br> Greate</h2></div>
                 <div><span class='sh' style='align-items:center;'> ⭐⭐⭐</span><span style="font-weight:bold;color:#ddd">______________</span></div>
             </div>
         </div>
     </div>
     <div class="midd">
         <h3><span class='sh'> ⭐⭐⭐</span> 💫QUICK VIEW  <span class='sh'>⭐⭐⭐</span> </h3>
-        <p>💫This is a simple chatbot designed to assist you with various queries related to GORA-AI.</p>
+        <p>💫This is a simple chatbot designed to assist you with various queries.</p>
         <p>🤖Feel free to ask any question. Type your message and press Enter to send.</p>
         <p>🤖UTPC-AI is an AI model developed by the team of AI specialists in the field of Artificial Intelligence and Machine Learning.</p>
         <p class='last'>🤖You can also visit our website at <a href="https://utpc.or.tz/" style="font-weight:600;color: blue;">Click Me</a> to learn more about UTPC.</p>
@@ -102,7 +104,12 @@
     flex: 1;
 }
 #user-section .right-side {
-   
+    display: flex;
+    font-size: 20px;
+    color: #ddd;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     background-color: #000000b7;
@@ -156,10 +163,16 @@
         <!-- Chat Section (default active) -->
         <section id="chat-section" class="section active">
             <div class="chat-header">
-
-                <h2>UTPC-AI <br> <span style='font-size:14px;'>Assistant ChatBot</span></h2>
+                <div style='display:flex;align-items: center; justify-content:center;'>
+                    <img src='https://utpc.or.tz/public/assets/images/utpc/small.png' height='60px' width='60px'>
+                    <h2>UTPC-AI <br> <span style='font-size:14px;'>Assistant ChatBot</span></h2>
+                </div>
             </div>
             <div class="message-container">
+                <video autoplay muted loop id="message-bg-video">
+                    <source src="https://videos.pexels.com/video-files/3129595/3129595-sd_640_360_30fps.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
                 <!-- Messages will be appended here -->
             </div>
             <div class="chat-input">
@@ -167,15 +180,55 @@
                 <button id="send-button">Send</button>
             </div>
         </section>
+        
+    
 
         <!-- Menu Section -->
         <section id="menu-section" class="section">
             <div class="menu-header">
-                <h2>Menu</h2>
+                <h2>Support centre</h2>
             </div>
-            <p>Hello this is Menu Page</p>
+            <p>Hello do you need any Help</p>
             <!-- Additional content here -->
         </section>
+
+        <style>
+            .toggle-button {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                padding: 0;
+                border: none;
+                border-radius: 50px;
+                background-color: #007bff;
+                color: white;
+                cursor: pointer;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+                z-index: 1000; /* Ensure it stays on top */
+            }
+            .toggle-button{
+                font-size: 30px;
+                padding: 5px;
+                width: 45px;
+                height: 45px;
+
+            }
+            
+            .toggle-button:hover {
+                background-color: #0056b3;
+            }
+            
+            #message-bg-video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%; /* Ensure it covers the width */
+                height: 100%; /* Ensure it covers the height */
+                object-fit: cover; /* Cover the entire container */
+                z-index: -1; /* Place behind other content */
+                opacity: 0.5; /* Adjust opacity if needed */
+            }
+        </style>
 
 
     </div>
@@ -267,6 +320,23 @@
                 console.error('Error:', error);
             });
         });
+
+        // Select the widget and toggle button
+const widget = document.querySelector('.widget');
+const toggleButton = document.getElementById('toggle-widget');
+
+// Function to toggle the widget visibility
+toggleButton.addEventListener('click', () => {
+    if (widget.style.display === 'block' || widget.style.display === '') {
+        widget.style.display = 'none';
+    } else {
+        widget.style.display = 'block';
+    }
+});
+
+// Initially hide the widget
+widget.style.display = 'none';
+
     </script>
 
     <style>
@@ -296,19 +366,23 @@
             overflow: hidden;
             background-color: white;
         }
-        .widget{
-            max-width:400px;
+        .widget {
+            position: fixed; /* Make the widget fixed so it stays in position */
+            bottom: 80px; /* Adjust the bottom margin to be above the toggle button */
+            right: 20px; /* Align it to the right, same as the button */
+            max-width: 400px;
             width: 100%;
             box-shadow: 0 0 10px black;
-            border-radius:15px;
+            border-radius: 15px;
             border: 1px solid #ddd;
-
+            z-index: 1000; /* Ensure it appears above other elements */
         }
         /* Header Styles */
-        .chat-header, .user-header, .menu-header {
+        .chat-header{
             background-color: #007bff;
             color: #ffffff;
-            padding: 20px;
+            border-top: 6px solid #ddd;
+            padding: 1px;
             text-align: center;
             border-radius: 10px 10px 0 0;
         }
@@ -319,11 +393,13 @@
         }
         
         .message-container {
+            position: relative; /* Enable absolute positioning for children */
             flex: 1;
             padding: 10px;
             overflow-y: auto;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.9); /* Background for messages */
         }
+        
         
         .chat-input {
             display: flex;
